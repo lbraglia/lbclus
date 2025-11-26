@@ -1,7 +1,7 @@
 # lbclus
 
-The goal of lbclus is to save useful wrappers and utilities for reusability in
-cluster based analysis.
+The goal of lbclus is to save useful utilities and wrappers for reusability in
+cluster-analysis-based analyses or vaguely related topics.
 
 ## Installation
 
