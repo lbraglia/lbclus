@@ -1,25 +1,12 @@
-
 # lbclus
 
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of lbclus is to ...
+The goal of lbclus is to save useful wrappers and utilities for reusability in
+cluster based analysis.
 
 ## Installation
 
 You can install the development version of lbclus like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+devtools::install_github("lbraglia/lbclus")
 ```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(lbclus)
-## basic example code
-```
-
