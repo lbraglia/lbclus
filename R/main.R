@@ -35,9 +35,11 @@ scale_mad <- function(x, center = TRUE, scale = TRUE){
 }
 
 
-set.seed(1)  
 #'@export
-cluster_pch <- fpc::clusym                     # choose pch
+cluster_pch <- fpc::clusym  # choose pch
+
+set.seed(1)
+
 #'@export
 cluster_col <- sample(grDevices::colors(), length(cluster_pch)) # choose colors
 
@@ -52,3 +54,7 @@ plot_clus <- function(coords, clvec, ...){
 
 #'@export
 kmeans <- function(x, k) kmeans(x, centers = k, nstart = 100, max.iter = 100)
+
+
+#' @export
+index_ari <- function(cl_x, cl_y) mclust::adjustedRandIndex(cl_x, cl_y)

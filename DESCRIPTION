@@ -4,7 +4,7 @@ Version: 0.0.1
 Authors@R: 
     person("Luca", "Braglia", , "lbraglia@gmail.com", role = c("aut", "cre"))
 Description: Clustering related wrappers
-Imports: fpc, smacof, nomclust
+Imports: fpc, smacof, nomclust, mclust
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
