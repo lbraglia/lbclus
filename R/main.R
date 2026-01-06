@@ -226,8 +226,8 @@ plot.gapAnalysis <- function(x) {
 }
 
 
-### pairsplot decente
-
+### battery-included pairsplot
+### ------------------------------------------------------
 pairs_diagonal <- function(x, ...){
     # same as from ?pairs
     usr <- par("usr");  on.exit(par(usr))
@@ -237,7 +237,7 @@ pairs_diagonal <- function(x, ...){
     nB <- length(breaks)
     y <- h$counts
     y <- y/max(y)
-    rect(breaks[-nB], 0, breaks[-1], y, ...)
+    rect(breaks[-nB], 0, breaks[-1], y, col="grey")
 }
 
 ## in doing pairs, in the upper panel, show bivariate correlation
@@ -256,21 +256,18 @@ panel_cor <- function(x, y, digits = 2, prefix = "", ...)
 
 #' pairs with smoothing, histograms and less/more visible correlations
 #' @param data dataframe
-#' @param ... other parameters given to pairs (eg col)
+#' @param pch point type
+#' @param col color
+#' @param ... other parameters given to pairs
 #' @examples
-#' pairsplot(airquality)
+#' pairsplot(airquality, col=airquality[, 5])
 #' @export
-pairsplot <-function(data, ...
-                     ## pch = ".",
-                     ## col = "black"
-                     ){
+pairsplot <-function(data, pch=20, col=lbmisc::col2hex("black", 0.3), ...){
   graphics::pairs(data,
-                  ...,
-                  ## pch = pch,
-                  ## col = col,
-                  ## xlim = r,
-                  ## ylim = r,
+                  pch=pch,
+                  col=col,                 
                   panel = panel.smooth, #add smothing bivariate relation
                   diag.panel = pairs_diagonal, #histogram
-                  upper.panel = panel_cor) # correlation
+                  upper.panel = panel_cor, # correlation
+                  ...)
 }

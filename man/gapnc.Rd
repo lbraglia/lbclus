@@ -25,6 +25,6 @@ library(lbdatasets)
 set.seed(112)
 gap_clus2 <- gapnc(clusterdata2, K.max = 15)
 plot(gap_clus2)
-# optimal number of cluster is 9
+# optimal number of cluster is 9 o 10 a seconda di come si sveglia
 
 }
