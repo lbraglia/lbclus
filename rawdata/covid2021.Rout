@@ -1,0 +1,3 @@
+> covid2021 <- read.table(file = "covid2021.dat")
+> save("covid2021", file = "../data/covid2021.rda", compress = "bzip2")
+> 

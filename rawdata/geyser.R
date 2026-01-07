@@ -1,0 +1,2 @@
+geyser <- read.table(file = "geyser.dat", header=TRUE)
+save("geyser", file = "../data/geyser.rda", compress = "bzip2")

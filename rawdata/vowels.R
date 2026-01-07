@@ -1,0 +1,2 @@
+vowels <- read.table(file = "vowels.dat", header = TRUE)
+save("vowels", file = "../data/vowels.rda", compress = "bzip2")

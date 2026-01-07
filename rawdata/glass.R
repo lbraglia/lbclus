@@ -1,0 +1,2 @@
+glass <- read.table(file = "glass.dat", header = TRUE)
+save("glass", file = "../data/glass.rda", compress = "bzip2")
