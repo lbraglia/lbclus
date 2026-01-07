@@ -1,0 +1,2 @@
+bundestag <- read.table(file = "bundestag.dat", header = TRUE)
+save("bundestag", file = "../data/bundestag.rda", compress = "bzip2")

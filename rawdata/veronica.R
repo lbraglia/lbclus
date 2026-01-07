@@ -1,0 +1,2 @@
+veronica <- read.table(file = "veronica.dat")
+save("veronica", file = "../data/veronica.rda", compress = "bzip2")

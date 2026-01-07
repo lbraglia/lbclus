@@ -20,7 +20,6 @@ gapnc(
 use by default kmeans with better defaults (eg iter.max
 }
 \examples{
-library(lbdatasets)
 # clusterdata2 <- read.table("data/clusterdata2.dat")
 set.seed(112)
 gap_clus2 <- gapnc(clusterdata2, K.max = 15)

@@ -1,41 +1,3 @@
-#' @export
-dist_eucl <- function(x) stats::dist(x=x, method = "euclidean")
-
-#' @export
-dist_minkowski <- function(x, p = 2) stats::dist(x = x, method="minkowski", p = p)
-
-#' @export
-dist_mahalanobis <- function(x) stats::dist(x = x, method="mahalanobis")
-
-#' @export
-dist_manhattan <- function(x) stats::dist(x = x, method = "manhattan")
-
-#' @export
-dist_smd <- function(x) nomclust::sm(x)
-## dist_corr <- function(x) {}
-
-#' @export
-dist_gower <- function(x, type = list(ordinal = seq_len(ncol(x)))) cluster::daisy(x, metric = "gower", type = type)
-
-#'@export
-coords_mds <- function(x) smacof::mds(x)$conf
-
-#'@export
-coords_pca <- function(x, scale = TRUE, verbose=TRUE){
-  if (scale) x <- scale(x)
-  pca <- stats::princomp(x)
-  if (verbose) print(summary(pca)) # print pca stats
-  pca$scores[, 1:2]
-}
-
-#'@export
-scale_mad <- function(x, center = TRUE, scale = TRUE){
-  if (center) x <- x - median(x, na.rm = TRUE)
-  if (scale)  x <- x / mad(x, na.rm = TRUE)
-  x
-}
-
-
 ## Colors and symbols
 
 #'@export
@@ -93,7 +55,6 @@ index_ari <- function(cl_x, cl_y) mclust::adjustedRandIndex(cl_x, cl_y)
 #' in a supervised approach: the index close to 1 suggest that clustering is
 #' reproducing the reference/known classification better
 #' @examples
-#' library(lbdatasets)
 #' # oliveoil <- read.table("data/oliveoil.dat", header=TRUE)
 #' head(oliveoil)
 #' olive <- oliveoil[-c(1:2)]
@@ -134,7 +95,6 @@ index_mean_purity <- function(ref, cl){
 #' use by default kmeans with better defaults (eg iter.max
 #'
 #' @examples
-#' library(lbdatasets)
 #' # clusterdata2 <- read.table("data/clusterdata2.dat")
 #' set.seed(112)
 #' gap_clus2 <- gapnc(clusterdata2, K.max = 15)
