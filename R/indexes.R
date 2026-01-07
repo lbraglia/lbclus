@@ -1,3 +1,5 @@
+## ---------- supervised
+
 #' Adjusted Rand Index (agreement of clustering solutions like CCC)
 #'
 #' @examples
@@ -11,7 +13,8 @@
 #' 
 #' # comparison with known classification (higher better)
 #' index_ari(olive3$cluster, oliveoil$macro.area)
-#' index_ari(olive3$cluster, oliveoid$macro.area)
+#' index_ari(olive3s$cluster, oliveoil$macro.area)
+#' 
 #' @export
 index_ari <- function(cl_x, cl_y) mclust::adjustedRandIndex(cl_x, cl_y)
 
@@ -36,4 +39,37 @@ index_mean_purity <- function(ref, cl){
   purity_of_each_cluster <- apply(tab, 2, purity)
   weighted.mean(purity_of_each_cluster, w = colSums(tab))
 }
+
+
+## ---------- UNsupervised
+
+#' Average Silhouette Width
+#' 
+#' Quality of clustering solutions given distance between units (the higher the
+#' better)
+#' 
+#' @param cl a classification vector (integers) or a list with $clustering component
+#' @param d dist object
+#' @examples
+#'
+#' b <- bundestag[1:5]
+#' d <- dist_manhattan(b)
+#' bpam <- lbclus::pam(d, k=2)
+#' 
+#' index_asw(bpam$cluster, d=d) # should be 0.48
+#' index_asw(bpam, d=d) #same?
+#'
+#' # choosing n of clusters within k-means
+#' # -------------------------------------
+#' plot(clusterdata1)
+#' sdat <- scale(clusterdata1)
+#' sdat_dist <- dist(sdat)
+#' 
+#' K <- 2:5
+#' names(K) <- K
+#' clusters <- lapply(K, function(k) lbclus::kmeans(sdat, k=k)$cluster)
+#' sapply(clusters, function(cl) index_asw(cl = cl, d = sdat_dist))
+#' 
+#' @export
+index_asw <- function(cl, d) summary(cluster::silhouette(x = cl, dist = d))$avg.width
 

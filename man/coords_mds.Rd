@@ -10,8 +10,13 @@ coords_mds(d, verbose = TRUE)
 MDS 2-d coordinates
 }
 \examples{
+
+# bundestag example
 b <- bundestag[1:5]
 d <- dist_corr1(b)
 coords_mds(d)
 
+# veronica example
+d <- dist_jaccard(veronica)
+plot(coords_mds(d), asp=1)
 }
