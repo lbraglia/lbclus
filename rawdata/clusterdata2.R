@@ -1,0 +1,3 @@
+clusterdata2 <- read.table(file = "clusterdata2.dat", as.is = TRUE, header = TRUE)
+# names(clusterdata2) <- tolower(names(clusterdata2))
+save("clusterdata2", file = "../data/clusterdata2.rda", compress = "bzip2")

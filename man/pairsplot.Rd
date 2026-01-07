@@ -19,6 +19,5 @@ pairsplot(data, pch = 20, col = lbmisc::col2hex("black", 0.3), ...)
 pairs with smoothing, histograms and less/more visible correlations
 }
 \examples{
-pairsplot(airquality)
 pairsplot(airquality, col=airquality[, 5])
 }

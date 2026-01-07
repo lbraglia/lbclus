@@ -1,0 +1,3 @@
+oliveoil <- read.table(file = "oliveoil.dat", as.is = TRUE, header = TRUE)
+# names(oliveoil) <- tolower(names(oliveoil))
+save("oliveoil", file = "../data/oliveoil.rda", compress = "bzip2")
