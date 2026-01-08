@@ -3,12 +3,12 @@
 #' @examples
 #'
 #' set.seed(1)
-#' km <- lbclus::kmeans(clusterdata1, k=3)
-#' cluster_plot(clusterdata1, km$cluster)
+#' km <- cluster_kmeans(clusterdata1, k=3)
+#' plot_cluster(clusterdata1, km$cluster)
 #' cluster_profiles(clusterdata1, km$cluster)
 #' 
 #'@export
-kmeans <- function(x, k, nstart = 100, iter.max = 100)
+cluster_kmeans <- function(x, k, nstart = 100, iter.max = 100)
   stats::kmeans(x, centers = k, nstart = nstart, iter.max = iter.max)
 
 
@@ -24,8 +24,55 @@ kmeans <- function(x, k, nstart = 100, iter.max = 100)
 #' b <- bundestag[1:5]
 #' d <- dist_manhattan(bundestag)
 #' set.seed(1)
-#' lbclus::pam(d=d, k=5)
+#' p <- lbclus::pam(d=d, k=5)
 #' 
 #' @export
-pam <- function(d, k) cluster::pam(x = d, k = k)
+cluster_pam <- function(d, k) cluster::pam(x = d, k = k)
 
+
+# ------------------------------- hierarchical clustering
+  
+
+#' Hierarchical clustering
+#'
+#' Average linkage by default other wise set method
+#' If k is specified cutree is 
+#' 
+#' @examples
+#'
+#' # jaccard on veronica, average link
+#' d <- dist_jaccard(veronica)
+#' plot(cluster_hier(d)) # average linkage by default
+#' cluster_hier(d, k=8)
+#'
+#' # euclidean on scaled geyser, average link
+#' d <- dist_eucl(scale(geyser))
+#' hcl <- cluster_hier(d, k=4)
+#' par(mfrow=c(1,2))
+#' plot(hcl$hclus)
+#' plot_cluster(scale(geyser), hcl$cluster)
+#' 
+#' @export
+cluster_hier <- function(d, k = NULL,
+                         method=c("average", "single", "complete", "ward.D2")){
+  method <- match.arg(method)
+  hcl <- stats::hclust(d, method = method)
+  if (is.null(k))
+    return(hcl)
+  else
+    return(list("hclust" = hcl, "cluster" = stats::cutree(hcl, k = k)))
+}
+
+## #' Single linkage hierarchical clustering
+## #' @export
+## cluster_hsl <- function(d, k=NULL){
+##   hcl <- stats::hclust(d, method = "single")
+##   hierarchical_handle_k(hcl = hcl, k = k)
+## }
+
+## #' Single linkage hierarchical clustering
+## #' @export
+## cluster_hcl <- function(d, k=NULL){
+##   hcl <- stats::hclust(d, method="complete")
+##   hierarchical_handle_k(hcl = hcl, k = k)
+## }

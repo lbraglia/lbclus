@@ -1,18 +1,23 @@
 ## Colors and symbols
 
-#'@export
 cluster_pch <- fpc::clusym  # choose pch
-
 set.seed(1)
-
-#'@export
 cluster_col <- sample(grDevices::colors(), length(cluster_pch)) # choose colors
 
-## descrittive
+#' Function for plotting clusters
+#' @examples
+#' example(cluster_kmeans)
+#' @export
+plot_cluster <- function(coords, clvec, col_alpha = 1, ...){
+  clustering_col <- lbmisc::col2hex(cluster_col[clvec], alpha = col_alpha)
+  clustering_pch <- cluster_pch[clvec]
+  plot(coords, col = clustering_col, pch = clustering_pch, ...)
+}
+
 
 #' compute cluster profiles (means)
 #' @examples
-#' example(kmeans)
+#' example(cluster_kmeans)
 #'@export
 cluster_profiles <- function(data, clvec){
   res <- aggregate(data, by = list(clvec), FUN = mean, na.rm = TRUE)
@@ -21,18 +26,6 @@ cluster_profiles <- function(data, clvec){
   names(rval)[1] <- "cluster"
   rval
 }
-
-
-#' Function for plotting clusters
-#' @examples
-#' example(kmeans)
-#' @export
-cluster_plot <- function(coords, clvec, col_alpha = 1, ...){
-  clustering_col <- lbmisc::col2hex(cluster_col[clvec], alpha = col_alpha)
-  clustering_pch <- cluster_pch[clvec]
-  plot(coords, col = clustering_col, pch = clustering_pch, ...)
-}
-
 
 
 ### battery-included pairsplot
@@ -71,7 +64,7 @@ panel_cor <- function(x, y, digits = 2, prefix = "", ...)
 #' @examples
 #' pairsplot(airquality, col=airquality[, 5])
 #' @export
-pairsplot <-function(data, pch=20, col=lbmisc::col2hex("black", 0.3), ...){
+plot_pairs <-function(data, pch=20, col=lbmisc::col2hex("black", 0.3), ...){
   graphics::pairs(data,
                   pch=pch,
                   col=col,                 

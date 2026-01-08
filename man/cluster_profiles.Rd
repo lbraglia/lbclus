@@ -10,5 +10,5 @@ cluster_profiles(data, clvec)
 compute cluster profiles (means)
 }
 \examples{
-example(kmeans)
+example(cluster_kmeans)
 }
