@@ -9,3 +9,11 @@ kmeans(x, k, nstart = 100, iter.max = 100)
 \description{
 K-means with better defaults
 }
+\examples{
+
+set.seed(1)
+km <- lbclus::kmeans(clusterdata1, k=3)
+cluster_plot(clusterdata1, km$cluster)
+cluster_profiles(clusterdata1, km$cluster)
+
+}

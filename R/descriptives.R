@@ -12,7 +12,7 @@ cluster_col <- sample(grDevices::colors(), length(cluster_pch)) # choose colors
 
 #' compute cluster profiles (means)
 #' @examples
-#' cluster_profiles(airquality[, -(5:6)], airquality$Month)
+#' example(kmeans)
 #'@export
 cluster_profiles <- function(data, clvec){
   res <- aggregate(data, by = list(clvec), FUN = mean, na.rm = TRUE)
@@ -24,9 +24,10 @@ cluster_profiles <- function(data, clvec){
 
 
 #' Function for plotting clusters
-#' 
-#'@export
-plot_clus <- function(coords, clvec, col_alpha = 1, ...){
+#' @examples
+#' example(kmeans)
+#' @export
+cluster_plot <- function(coords, clvec, col_alpha = 1, ...){
   clustering_col <- lbmisc::col2hex(cluster_col[clvec], alpha = col_alpha)
   clustering_pch <- cluster_pch[clvec]
   plot(coords, col = clustering_col, pch = clustering_pch, ...)

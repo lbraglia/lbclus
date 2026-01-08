@@ -18,6 +18,7 @@ K-means on distance to medoids (object)
 
 b <- bundestag[1:5]
 d <- dist_manhattan(bundestag)
+set.seed(1)
 lbclus::pam(d=d, k=5)
 
 }

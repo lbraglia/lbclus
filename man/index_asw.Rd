@@ -26,6 +26,7 @@ index_asw(bpam, d=d) #same?
 
 # choosing n of clusters within k-means
 # -------------------------------------
+plot(clusterdata1)
 sdat <- scale(clusterdata1)
 sdat_dist <- dist(sdat)
 

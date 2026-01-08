@@ -10,5 +10,5 @@ cluster_profiles(data, clvec)
 compute cluster profiles (means)
 }
 \examples{
-cluster_profiles(airquality[, -(5:6)], airquality$Month)
+example(kmeans)
 }
