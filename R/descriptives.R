@@ -17,15 +17,39 @@ plot_cluster <- function(coords, clvec, col_alpha = 1, ...){
 
 #' compute cluster profiles (means)
 #' @examples
+#' # example1
 #' example(cluster_kmeans)
+#' # example2 (bad but quick example)
+#' airquality2 <- airquality
+#' airquality2$Month <- factor(airquality2$Month)
+#' airquality2$Day <- factor(airquality2$Day)
+#' cluster_profiles(airquality2, airquality2$Month) # suppose month is result of a clustering
 #'@export
 cluster_profiles <- function(data, clvec){
-  res <- aggregate(data, by = list(clvec), FUN = mean, na.rm = TRUE)
+  factors <- sapply(data, is.factor)
+
+  if (any(factors)){
+    # handle factors
+    data_factors <- data[, factors]
+    col_perc <- function(x, xn) {
+      rval <- prop.table(table(x, clvec), margin = 2) * 100
+      rownames(rval) <- sprintf("%s %s", xn, rownames(rval))
+      rval
+    }
+    percs <- Map(col_perc, data_factors, as.list(names(data_factors)))
+    percs <- do.call(rbind, percs)
+  }
+
+  # numerics
+  data_notf <- data[, !factors]
   n <- aggregate(data.frame("n" = rep(1, nrow(data))), by = list(clvec), FUN = sum)
-  rval <- merge(n, res, by = "Group.1", all.x = TRUE)  
-  names(rval)[1] <- "cluster"
-  rval
+  res <- aggregate(data_notf, by = list(clvec), FUN = mean, na.rm = TRUE)
+  means <- merge(n, res, by = "Group.1", all.x = TRUE)
+  names(means)[1] <- "cluster"
+  # return results
+  if (any(factors)) list("means" = means, "factor_percs" = percs) else means
 }
+
 
 
 ### battery-included pairsplot
