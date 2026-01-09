@@ -4,7 +4,11 @@
 \alias{cluster_hier}
 \title{Hierarchical clustering}
 \usage{
-cluster_hier(d, k = NULL, method = c("average", "single", "complete"))
+cluster_hier(
+  d,
+  k = NULL,
+  method = c("average", "single", "complete", "ward.D2")
+)
 }
 \description{
 Average linkage by default other wise set method
@@ -12,12 +16,14 @@ If k is specified cutree is
 }
 \examples{
 
+data(veronica)
 # jaccard on veronica, average link
 d <- dist_jaccard(veronica)
 plot(cluster_hier(d)) # average linkage by default
 cluster_hier(d, k=8)
 
 # euclidean on scaled geyser, average link
+data(geyser)
 d <- dist_eucl(scale(geyser))
 hcl <- cluster_hier(d, k=4)
 par(mfrow=c(1,2))

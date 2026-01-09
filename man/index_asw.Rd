@@ -17,6 +17,7 @@ better)
 }
 \examples{
 
+data(bundestag)
 b <- bundestag[1:5]
 d <- dist_manhattan(b)
 bpam <- lbclus::pam(d, k=2)
@@ -26,6 +27,7 @@ index_asw(bpam, d=d) #same?
 
 # choosing n of clusters within k-means
 # -------------------------------------
+data(clusterdata1)
 plot(clusterdata1)
 sdat <- scale(clusterdata1)
 sdat_dist <- dist(sdat)

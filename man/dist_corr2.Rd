@@ -10,6 +10,7 @@ dist_corr2(x)
 Correlation distance 2
 }
 \examples{
+data(bundestag)
 b <- bundestag[1:5]
 dist_corr2(b)
 

@@ -18,21 +18,19 @@
 #' use by default kmeans with better defaults (eg iter.max
 #'
 #' @examples
-#' 
+#' data(clusterdata2)
 #' set.seed(112)
-#' gap_clus2 <- gapnc(clusterdata2, K.max = 15)
-#' plot(gap_clus2)
-#' # optimal number of cluster is 9 o 10 a seconda di come si sveglia
-#' 
+#' gap_clus2 <- gapnc(clusterdata2, K.max = 15) # optimal: 9 or 10
 #' @export
 gapnc <- function(data,
-                  FUNcluster = lbclus::kmeans, # use kmeans with better defaults
+                  FUNcluster = lbclus::cluster_kmeans, # use kmeans with better defaults
                   K.max = 10,             # max number
                   B = 100,                # 
                   d.power = 2,            #
                   spaceH0 = "scaledPCA",  # 
                   method = "globalSEmax", # maxSE params
-                  SE.factor = 2,          # 
+                  SE.factor = 2,          #
+                  view = TRUE,            # do the plotting
                   ...) # options passed to FUNcluster
 {
     spaceH0 <- match.arg(spaceH0, c("scaledPCA", "original"))
@@ -52,7 +50,7 @@ gapnc <- function(data,
                          method = method,
                          SE.factor = SE.factor)
 
-    ## Re-run clustering (kmeans) with optimal number of cluster.
+    ## Re-run clustering (kmeans) with optimal number of cluster. naa
     optimal_cl <- FUNcluster(data, nc, ...)
 
     ## return
@@ -72,6 +70,7 @@ gapnc <- function(data,
         "method" = method,
         "SE.factor" = SE.factor)
     class(res) <- c("gapAnalysis", "list")
+    if (view) plot(res)
     res
 }
 
@@ -83,14 +82,14 @@ plot.gapAnalysis <- function(x) {
     ## Actual plotting 
     par(mfrow = c(1, 3))
 
-    ## 1) Values of gap and +/- 1se bands and optimal K
-    plot(x$gap, main = "Gap +/- 1*se bands")
-    abline(v = x$n_cl, lty = "dotted", col = "blue")
-
-    ## 2) elbow method: values of S_k and optimal K (according to gap analysis)
+    ## 1) elbow method: values of S_k and optimal K (according to gap analysis)
     plot(clus, exp(x$gap$Tab[, 1]),
          xlab = "k", ylab = "S_k", type = "l",
          main = "Elbow method")
+    ## abline(v = x$n_cl, lty = "dotted", col = "blue")
+
+    ## 2) Values of gap and +/- 1se bands and optimal K
+    plot(x$gap, main = "Gap +/- 1*se bands")
     abline(v = x$n_cl, lty = "dotted", col = "blue")
 
     ## 3) log S_k and optimal k

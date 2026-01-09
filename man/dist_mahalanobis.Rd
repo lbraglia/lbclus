@@ -10,7 +10,7 @@ dist_mahalanobis(x)
 Squared mahalanobis distance
 }
 \examples{
-
+data(oliveoil)
 olive <- oliveoil[, 3:10]
 dm <- dist_mahalanobis(olive)
 sel <- 1:5

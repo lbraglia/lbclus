@@ -10,6 +10,7 @@ dist_smd(x)
 Simple matching distance
 }
 \examples{
+data(veronica)
 a <- dist_smd(veronica)
 b <- dist(veronica, method = "manhattan")/ncol(veronica) # just in binary case it's the same
 sel <- 1:5

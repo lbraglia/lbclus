@@ -11,6 +11,7 @@ Gower distance
 }
 \examples{
 
+data(housing)
 head(housing) # chas (4-th) is binary, rad (9-th) is ordinal
 summary(housing)
 

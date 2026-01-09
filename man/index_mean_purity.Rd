@@ -12,6 +12,8 @@ in a supervised approach: the index close to 1 suggest that clustering is
 reproducing the reference/known classification better
 }
 \examples{
+
+data(oliveoil)
 # oliveoil <- read.table("data/oliveoil.dat", header=TRUE)
 head(oliveoil)
 olive <- oliveoil[-c(1:2)]

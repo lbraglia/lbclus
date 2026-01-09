@@ -3,6 +3,8 @@
 #' Adjusted Rand Index (agreement of clustering solutions like CCC)
 #'
 #' @examples
+#' 
+#' data(oliveoil)
 #' olive <- oliveoil[-c(1:2)]
 #' solive <- scale(olive)
 #' olive3 <- lbclus::kmeans(olive, 3)
@@ -26,6 +28,8 @@ index_ari <- function(cl_x, cl_y) mclust::adjustedRandIndex(cl_x, cl_y)
 #' in a supervised approach: the index close to 1 suggest that clustering is
 #' reproducing the reference/known classification better
 #' @examples
+#'
+#' data(oliveoil)
 #' # oliveoil <- read.table("data/oliveoil.dat", header=TRUE)
 #' head(oliveoil)
 #' olive <- oliveoil[-c(1:2)]
@@ -52,6 +56,7 @@ index_mean_purity <- function(ref, cl){
 #' @param d dist object
 #' @examples
 #'
+#' data(bundestag)
 #' b <- bundestag[1:5]
 #' d <- dist_manhattan(b)
 #' bpam <- lbclus::pam(d, k=2)
@@ -61,6 +66,7 @@ index_mean_purity <- function(ref, cl){
 #'
 #' # choosing n of clusters within k-means
 #' # -------------------------------------
+#' data(clusterdata1)
 #' plot(clusterdata1)
 #' sdat <- scale(clusterdata1)
 #' sdat_dist <- dist(sdat)

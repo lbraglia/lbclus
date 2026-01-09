@@ -8,7 +8,7 @@ dist_minkowski <- function(x, p = 2) stats::dist(x = x, method = "minkowski", p 
 #' Squared mahalanobis distance
 #' 
 #' @examples
-#' 
+#' data(oliveoil)
 #' olive <- oliveoil[, 3:10]
 #' dm <- dist_mahalanobis(olive)
 #' sel <- 1:5
@@ -28,6 +28,7 @@ dist_manhattan <- function(x) stats::dist(x = x, method = "manhattan")
 
 #' Simple matching distance
 #' @examples
+#' data(veronica)
 #' a <- dist_smd(veronica)
 #' b <- dist(veronica, method = "manhattan")/ncol(veronica) # just in binary case it's the same
 #' sel <- 1:5
@@ -42,6 +43,7 @@ dist_jaccard <- function(x) stats::dist(x = x, method = "binary")
 #' Correlation distance 2
 #'
 #' @examples
+#' data(bundestag)
 #' b <- bundestag[1:5]
 #' dist_corr1(b)
 #' 
@@ -54,6 +56,7 @@ dist_corr1 <- function(x) {
 #' Correlation distance 2
 #' 
 #' @examples
+#' data(bundestag)
 #' b <- bundestag[1:5]
 #' dist_corr2(b)
 #' 
@@ -67,7 +70,8 @@ dist_corr2 <- function(x) {
 #'
 #' 
 #' @examples
-#'
+#' 
+#' data(housing)
 #' head(housing) # chas (4-th) is binary, rad (9-th) is ordinal
 #' summary(housing)
 #' 

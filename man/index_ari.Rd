@@ -10,6 +10,8 @@ index_ari(cl_x, cl_y)
 Adjusted Rand Index (agreement of clustering solutions like CCC)
 }
 \examples{
+
+data(oliveoil)
 olive <- oliveoil[-c(1:2)]
 solive <- scale(olive)
 olive3 <- lbclus::kmeans(olive, 3)

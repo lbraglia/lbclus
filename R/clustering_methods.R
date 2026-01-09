@@ -1,7 +1,7 @@
 #' K-means with better defaults
 #' 
 #' @examples
-#'
+#' data(clusterdata1)
 #' set.seed(1)
 #' km <- cluster_kmeans(clusterdata1, k=3)
 #' plot_cluster(clusterdata1, km$cluster)
@@ -20,9 +20,9 @@ cluster_kmeans <- function(x, k, nstart = 100, iter.max = 100)
 #' @param k number of clusters
 #' 
 #' @examples
-#'
+#' data(bundestag)
 #' b <- bundestag[1:5]
-#' d <- dist_manhattan(bundestag)
+#' d <- dist_manhattan(b)
 #' set.seed(1)
 #' p <- lbclus::pam(d=d, k=5)
 #' 
@@ -39,13 +39,15 @@ cluster_pam <- function(d, k) cluster::pam(x = d, k = k)
 #' If k is specified cutree is 
 #' 
 #' @examples
-#'
+#' 
+#' data(veronica)
 #' # jaccard on veronica, average link
 #' d <- dist_jaccard(veronica)
 #' plot(cluster_hier(d)) # average linkage by default
 #' cluster_hier(d, k=8)
 #'
 #' # euclidean on scaled geyser, average link
+#' data(geyser)
 #' d <- dist_eucl(scale(geyser))
 #' hcl <- cluster_hier(d, k=4)
 #' par(mfrow=c(1,2))
@@ -62,17 +64,3 @@ cluster_hier <- function(d, k = NULL,
   else
     return(list("hclust" = hcl, "cluster" = stats::cutree(hcl, k = k)))
 }
-
-## #' Single linkage hierarchical clustering
-## #' @export
-## cluster_hsl <- function(d, k=NULL){
-##   hcl <- stats::hclust(d, method = "single")
-##   hierarchical_handle_k(hcl = hcl, k = k)
-## }
-
-## #' Single linkage hierarchical clustering
-## #' @export
-## cluster_hcl <- function(d, k=NULL){
-##   hcl <- stats::hclust(d, method="complete")
-##   hierarchical_handle_k(hcl = hcl, k = k)
-## }

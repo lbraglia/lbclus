@@ -10,7 +10,7 @@ cluster_kmeans(x, k, nstart = 100, iter.max = 100)
 K-means with better defaults
 }
 \examples{
-
+data(clusterdata1)
 set.seed(1)
 km <- cluster_kmeans(clusterdata1, k=3)
 plot_cluster(clusterdata1, km$cluster)

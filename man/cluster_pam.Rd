@@ -15,9 +15,9 @@ cluster_pam(d, k)
 K-means on distance to medoids (object)
 }
 \examples{
-
+data(bundestag)
 b <- bundestag[1:5]
-d <- dist_manhattan(bundestag)
+d <- dist_manhattan(b)
 set.seed(1)
 p <- lbclus::pam(d=d, k=5)
 
