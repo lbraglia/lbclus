@@ -1,4 +1,3 @@
-
 ## #' Function for plotting elbow plot for k-means clustering
 ## #' 
 ## #'@examples
@@ -106,4 +105,3 @@ plot.gapAnalysis <- function(x) {
            legend = c("log(S_k) in data", "E(log(S_k)) uniform"),
            lty = 1:2, bg = "white")
 }
-

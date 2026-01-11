@@ -10,5 +10,11 @@ cluster_profiles(data, clvec)
 compute cluster profiles (means)
 }
 \examples{
+# example1
 example(cluster_kmeans)
+# example2 (bad but quick example)
+airquality2 <- airquality
+airquality2$Month <- factor(airquality2$Month)
+airquality2$Day <- factor(airquality2$Day)
+cluster_profiles(airquality2, airquality2$Month) # suppose month is result of a clustering
 }

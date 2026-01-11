@@ -1,3 +1,5 @@
+#' @importFrom mclust mclustBIC
+
 #' @keywords internal
 "_PACKAGE"
 

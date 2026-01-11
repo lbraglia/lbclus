@@ -79,3 +79,31 @@ index_mean_purity <- function(ref, cl){
 #' @export
 index_asw <- function(cl, d) summary(cluster::silhouette(x = cl, dist = d))$avg.width
 
+
+
+
+#' Average Silhouette compare
+#'
+#' Compare different clustering solutions in term of quality, given a common
+#' distances description of data
+#' 
+#' @param lcl list of clustering solutions
+#' @param d dist object of data
+#' @examples
+#'
+#' # exercise 5
+#' data(glass)
+#' sglass <- scale(glass)
+#' d <- dist_eucl(sglass)
+#'
+#' km3 <- cluster_kmeans(sglass, 2)
+#' gm <- cluster_gaussianmixture(sglass, k = 4:6, verbose=FALSE)
+#' l <- list("km3"= km3$cluster, "gm"=gm$classification)
+#'
+#' index_asw_compare(lcl=l,d=d)
+#' @export
+index_asw_compare <- function(lcl, d){
+  asws <- sapply(lcl, function(cl) index_asw(cl=cl, d=d))
+  cat("Max ASW obtained with ", names(which.max(asws)), "\n")
+  asws
+}
