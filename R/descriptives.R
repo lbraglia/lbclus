@@ -1,7 +1,11 @@
 ## Colors and symbols
 
+#' @export
 cluster_pch <- fpc::clusym  # choose pch
+
 set.seed(1)
+
+#' @export
 cluster_col <- sample(grDevices::colors(), length(cluster_pch)) # choose colors
 
 #' Function for plotting clusters

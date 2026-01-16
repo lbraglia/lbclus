@@ -21,5 +21,6 @@ data(oliveoil)
 olive <- oliveoil[, 3:10]
 solive <- scale(olive)
 stolive <- cluster_skewtmixture(solive)
-#here smaller BIC is better
+# here smaller BIC is better
+
 }
